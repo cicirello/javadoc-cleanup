@@ -36,8 +36,8 @@ inputs:
     default: '.'
   base-url-path:
     description: 'The url of your webpage'
-    required: true
-    default: 'https://web.address.of.your.nifty.website/'
+    required: false
+    default: ''
 outputs:
   modified-count:
     description: 'The number of html files modified by javadoc-cleanup.' 
