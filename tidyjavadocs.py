@@ -31,6 +31,7 @@ import os
 import os.path
 
 def tidy(filename) :
+    modified = False
     with open(filename, 'r+') as f :
         contents = f.readlines()
         deleteIndex = -1
@@ -40,12 +41,15 @@ def tidy(filename) :
                 break
         if deleteIndex >= 0 :
             del contents[deleteIndex]
+            modified = True
             f.seek(0)
             f.truncate()
             f.writelines(contents)
+    return modified
 
 if __name__ == "__main__" :
     websiteRoot = sys.argv[1]
+    baseUrl = sys.argv[2]
 
     os.chdir(websiteRoot)
 
@@ -55,6 +59,11 @@ if __name__ == "__main__" :
             if len(f) >= 5 and ".html" == f[-5:] :
                 allFiles.append(os.path.join(root, f))
 
+    count = 0
     for f in allFiles :
-        tidy(f)
+        if tidy(f) :
+            count += 1
+
+    print("::set-output name=modified-count::" + str(count))
+    
     
