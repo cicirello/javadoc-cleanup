@@ -128,32 +128,32 @@ The body of the javadocs....
 
     def test_removetimestamp(self) :
         with open("testcase.html", "w") as testfile :
-            testfile.write(javadocWithTimestamp)
+            testfile.write(TestTidyjavadocs.javadocWithTimestamp)
         tidy.tidy("testcase.html")
         with open("testcase.html", "r") as testfile :
-            assertEqual(testfile.read(), expectedJavadoc)
+            assertEqual(testfile.read(), TestTidyjavadocs.expectedJavadoc)
         os.remove("testcase.html")
 
     def test_notimestamp(self) :
         with open("testcase.html", "w") as testfile :
-            testfile.write(javadocWithoutTimestamp)
+            testfile.write(TestTidyjavadocs.javadocWithoutTimestamp)
         tidy.tidy("testcase.html")
         with open("testcase.html", "r") as testfile :
-            assertEqual(testfile.read(), expectedJavadoc)
+            assertEqual(testfile.read(), TestTidyjavadocs.expectedJavadoc)
         os.remove("testcase.html")
 
     def test_alreadycleanedup(self) :
         with open("testcase.html", "w") as testfile :
-            testfile.write(javadocAlreadyCleanedUp)
+            testfile.write(TestTidyjavadocs.javadocAlreadyCleanedUp)
         tidy.tidy("testcase.html")
         with open("testcase.html", "r") as testfile :
-            assertEqual(testfile.read(), expectedJavadoc)
+            assertEqual(testfile.read(), TestTidyjavadocs.expectedJavadoc)
         os.remove("testcase.html")
 
     def test_nonJavadoc(self) :
         with open("testcase.html", "w") as testfile :
-            testfile.write(nonJavadoc)
+            testfile.write(TestTidyjavadocs.nonJavadoc)
         tidy.tidy("testcase.html")
         with open("testcase.html", "r") as testfile :
-            assertEqual(testfile.read(), expectedNonJavadoc)
+            assertEqual(testfile.read(), TestTidyjavadocs.expectedNonJavadoc)
         os.remove("testcase.html")
