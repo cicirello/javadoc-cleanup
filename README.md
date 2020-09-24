@@ -88,7 +88,7 @@ jobs:
     
     - name: Tidy up the javadocs
       id: tidy
-      uses: cicirello/javadoc-cleanup@v1.0.0
+      uses: cicirello/javadoc-cleanup@v1.1.0
       with:
         path-to-root: docs
     
@@ -103,7 +103,8 @@ jobs:
         else
           git config --global user.name 'Your Name'
           git config --global user.email 'YOUR-USERNAME@users.noreply.github.com'
-          git commit -am "Automated API website updates."
+          git add -A
+          git commit -m "Automated API website updates."
         fi
 ```
 
@@ -148,7 +149,7 @@ jobs:
     
     - name: Tidy up the javadocs
       id: tidy
-      uses: cicirello/javadoc-cleanup@v1.0.0
+      uses: cicirello/javadoc-cleanup@v1.1.0
       with:
         path-to-root: docs
     
@@ -163,12 +164,13 @@ jobs:
         else
           git config --global user.name 'Your Name'
           git config --global user.email 'YOUR-USERNAME@users.noreply.github.com'
-          git commit -am "Automated API website updates."
+          git add -A
+          git commit -m "Automated API website updates."
         fi
 
     - name: Generate the sitemap
       id: sitemap
-      uses: cicirello/generate-sitemap@v1.6.0
+      uses: cicirello/generate-sitemap@v1.6.1
       with:
         base-url-path: https://URL.FOR.YOUR.WEBSITE.GOES.HERE/
         path-to-root: docs
