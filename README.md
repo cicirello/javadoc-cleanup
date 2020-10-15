@@ -176,7 +176,7 @@ to generate a sitemap for the documentation website, and the
 [peter-evans/create-pull-request](https://github.com/peter-evans/create-pull-request)
 action to create a pull request with the changes.  Note that for this example,
 the checkout action is called with `fetch-depth: 0` because `generate-sitemap` needs
-to complete commit history. This is unnecessary for usage of the `javadoc-cleanup` action
+the complete commit history. This is unnecessary for usage of the `javadoc-cleanup` action
 alone.
 
 ```yml
@@ -201,11 +201,13 @@ jobs:
       with:
         java-version: 1.11
     
-    - name: Clean docs
-      run: ant -noinput -buildfile build/builddocs.xml clean
+    - name: Build docs with Maven
+      run: mvn javadoc:javadoc
 
-    - name: Build docs with Ant
-      run: ant -noinput -buildfile build/builddocs.xml
+    - name: Copy to Documentation Website Location
+      run: |
+        rm -rf docs
+        cp -rf target/site/apidocs/. docs
     
     - name: Tidy up the javadocs
       id: tidy
