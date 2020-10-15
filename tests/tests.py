@@ -196,5 +196,5 @@ The body of the javadocs....
                       "https://TESTING.FAKE.WEB.ADDRESS.TESTING/subdir/aindex.html"
                      ]
         for i, f in enumerate(filenames) :
-            self.assertEqual(expected[i%len(expected)], gs.urlstring(f, base1))
-            self.assertEqual(expected[i%len(expected)], gs.urlstring(f, base2))
+            self.assertEqual(expected[i%len(expected)], tidy.urlstring(f, base1))
+            self.assertEqual(expected[i%len(expected)], tidy.urlstring(f, base2))
