@@ -30,7 +30,7 @@ import sys
 import os
 import os.path
 
-def tidy(filename) :
+def tidy(filename, baseUrl=None) :
     """The tidy function does the following:
     1) Removes any javadoc timestamps that were inserted by javadoc despite using the
     notimestamp option.
@@ -41,6 +41,8 @@ def tidy(filename) :
     """
     modified = False
     generatedByJavadoc = False
+    if baseUrl != None :
+        canonical = '<link rel="canonical" href="{0}">\n'.format(urlstring(filename, baseUrl))
     with open(filename, 'r+') as f :
         contents = f.readlines()
         for i, line in enumerate(contents) :
@@ -53,9 +55,15 @@ def tidy(filename) :
                     modified = True
                     break
         if generatedByJavadoc and contents[headIndex+1].strip() != "<!-- GitHub action javadoc-cleanup -->" :
-            contents.insert(headIndex+1, "<!-- GitHub action javadoc-cleanup -->\n")
-            contents.insert(headIndex+2, '<meta name="viewport" content="width=device-width, initial-scale=1">\n')
-            contents.insert(headIndex+3, "<!-- End javadoc-cleanup block -->\n")
+            j = 1
+            contents.insert(headIndex+j, "<!-- GitHub action javadoc-cleanup -->\n")
+            j += 1
+            if baseUrl != None :
+                contents.insert(headIndex+j, canonical)
+                j += 1
+            contents.insert(headIndex+j, '<meta name="viewport" content="width=device-width, initial-scale=1">\n')
+            j += 1
+            contents.insert(headIndex+j, "<!-- End javadoc-cleanup block -->\n")
             modified = True
         if modified :
             f.seek(0)
@@ -63,9 +71,30 @@ def tidy(filename) :
             f.writelines(contents)
     return modified
 
+def urlstring(f, baseUrl) :
+    """Forms a string with the full url from a filename and base url.
+    Keyword arguments:
+    f - filename
+    baseUrl - address of the root of the website
+    """
+    if f[0]=="." :
+        u = f[1:]
+    else :
+        u = f
+    if len(u) >= 11 and u[-11:] == "/index.html" :
+        u = u[:-10]
+    elif u == "index.html" :
+        u = ""
+    if len(u) >= 1 and u[0]=="/" and len(baseUrl) >= 1 and baseUrl[-1]=="/" :
+        u = u[1:]
+    elif (len(u)==0 or u[0]!="/") and (len(baseUrl)==0 or baseUrl[-1]!="/") :
+        u = "/" + u
+    return baseUrl + u
+
 if __name__ == "__main__" :
     websiteRoot = sys.argv[1]
-    baseUrl = sys.argv[2]
+    baseUrl = sys.argv[2].strip()
+    addCanonicalLinks = baseUrl.startswith("http")
 
     os.chdir(websiteRoot)
 
@@ -76,9 +105,14 @@ if __name__ == "__main__" :
                 allFiles.append(os.path.join(root, f))
 
     count = 0
-    for f in allFiles :
-        if tidy(f) :
-            count += 1
+    if addCanonicalLinks :
+        for f in allFiles :
+            if tidy(f, baseUrl) :
+                count += 1
+    else :
+        for f in allFiles :
+            if tidy(f) :
+                count += 1
 
     print("::set-output name=modified-count::" + str(count))
     
