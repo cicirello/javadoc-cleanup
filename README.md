@@ -46,8 +46,8 @@ This output is the count of the number of html pages modified by the action.
 This example workflow is triggered by a push of java source files.
 After setting up java, Maven is used to generate the javadocs, and 
 the javadocs are then copied from Maven default target location to the 
-docs directory where the GitHub Pages documentation site is assumed hosted.  
-This example assumes you have Maven's `target` directory in your `.gitignore`.
+docs directory where the GitHub Pages documentation site is assumed hosted. This 
+example assumes you have Maven's `target` directory in your `.gitignore`.
 After which, the javadoc-cleanup action runs. The workflow then outputs 
 the number of modified html pages (for logging purposes). The 
 workflow then commits the changes (if any).
