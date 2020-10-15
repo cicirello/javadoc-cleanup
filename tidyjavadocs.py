@@ -30,7 +30,7 @@ import sys
 import os
 import os.path
 
-def tidy(filename) :
+def tidy(filename, baseUrl=None) :
     """The tidy function does the following:
     1) Removes any javadoc timestamps that were inserted by javadoc despite using the
     notimestamp option.
@@ -85,7 +85,8 @@ def urlstring(f, baseUrl) :
 
 if __name__ == "__main__" :
     websiteRoot = sys.argv[1]
-    baseUrl = sys.argv[2]
+    baseUrl = sys.argv[2].strip()
+    addCanonicalLinks = baseUrl.startswith("http")
 
     os.chdir(websiteRoot)
 
@@ -96,9 +97,14 @@ if __name__ == "__main__" :
                 allFiles.append(os.path.join(root, f))
 
     count = 0
-    for f in allFiles :
-        if tidy(f) :
-            count += 1
+    if addCanonicalLinks :
+        for f in allFiles :
+            if tidy(f, baseUrl) :
+                count += 1
+    else :
+        for f in allFiles :
+            if tidy(f) :
+                count += 1
 
     print("::set-output name=modified-count::" + str(count))
     
