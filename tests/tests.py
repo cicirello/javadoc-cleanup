@@ -157,3 +157,44 @@ The body of the javadocs....
         with open("testcase.html", "r") as testfile :
             self.assertEqual(testfile.read(), TestTidyjavadocs.expectedNonJavadoc)
         os.remove("testcase.html")
+
+    def test_urlstring(self) :
+        filenames = [ "./a.html",
+                      "./index.html",
+                      "./subdir/a.html",
+                      "./subdir/index.html",
+                      "./subdir/subdir/a.html",
+                      "./subdir/subdir/index.html",
+                      "./aindex.html",
+                      "./subdir/aindex.html",
+                      "/a.html",
+                      "/index.html",
+                      "/subdir/a.html",
+                      "/subdir/index.html",
+                      "/subdir/subdir/a.html",
+                      "/subdir/subdir/index.html",
+                      "/aindex.html",
+                      "/subdir/aindex.html",
+                      "a.html",
+                      "index.html",
+                      "subdir/a.html",
+                      "subdir/index.html",
+                      "subdir/subdir/a.html",
+                      "subdir/subdir/index.html",
+                      "aindex.html",
+                      "subdir/aindex.html"
+                      ]
+        base1 = "https://TESTING.FAKE.WEB.ADDRESS.TESTING/"
+        base2 = "https://TESTING.FAKE.WEB.ADDRESS.TESTING"
+        expected = [ "https://TESTING.FAKE.WEB.ADDRESS.TESTING/a.html",
+                      "https://TESTING.FAKE.WEB.ADDRESS.TESTING/",
+                      "https://TESTING.FAKE.WEB.ADDRESS.TESTING/subdir/a.html",
+                      "https://TESTING.FAKE.WEB.ADDRESS.TESTING/subdir/",
+                      "https://TESTING.FAKE.WEB.ADDRESS.TESTING/subdir/subdir/a.html",
+                      "https://TESTING.FAKE.WEB.ADDRESS.TESTING/subdir/subdir/",
+                      "https://TESTING.FAKE.WEB.ADDRESS.TESTING/aindex.html",
+                      "https://TESTING.FAKE.WEB.ADDRESS.TESTING/subdir/aindex.html"
+                     ]
+        for i, f in enumerate(filenames) :
+            self.assertEqual(expected[i%len(expected)], gs.urlstring(f, base1))
+            self.assertEqual(expected[i%len(expected)], gs.urlstring(f, base2))

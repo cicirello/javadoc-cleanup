@@ -63,6 +63,26 @@ def tidy(filename) :
             f.writelines(contents)
     return modified
 
+def urlstring(f, baseUrl) :
+    """Forms a string with the full url from a filename and base url.
+    Keyword arguments:
+    f - filename
+    baseUrl - address of the root of the website
+    """
+    if f[0]=="." :
+        u = f[1:]
+    else :
+        u = f
+    if len(u) >= 11 and u[-11:] == "/index.html" :
+        u = u[:-10]
+    elif u == "index.html" :
+        u = ""
+    if len(u) >= 1 and u[0]=="/" and len(baseUrl) >= 1 and baseUrl[-1]=="/" :
+        u = u[1:]
+    elif (len(u)==0 or u[0]!="/") and (len(baseUrl)==0 or baseUrl[-1]!="/") :
+        u = "/" + u
+    return baseUrl + u
+
 if __name__ == "__main__" :
     websiteRoot = sys.argv[1]
     baseUrl = sys.argv[2]
