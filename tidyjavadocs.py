@@ -41,6 +41,8 @@ def tidy(filename, baseUrl=None) :
     """
     modified = False
     generatedByJavadoc = False
+    if baseUrl != None :
+        canonical = '<link rel="canonical" href="{0}">\n'.format(urlstring(filename, baseUrl))
     with open(filename, 'r+') as f :
         contents = f.readlines()
         for i, line in enumerate(contents) :
@@ -53,9 +55,15 @@ def tidy(filename, baseUrl=None) :
                     modified = True
                     break
         if generatedByJavadoc and contents[headIndex+1].strip() != "<!-- GitHub action javadoc-cleanup -->" :
-            contents.insert(headIndex+1, "<!-- GitHub action javadoc-cleanup -->\n")
-            contents.insert(headIndex+2, '<meta name="viewport" content="width=device-width, initial-scale=1">\n')
-            contents.insert(headIndex+3, "<!-- End javadoc-cleanup block -->\n")
+            j = 1
+            contents.insert(headIndex+j, "<!-- GitHub action javadoc-cleanup -->\n")
+            j += 1
+            contents.insert(headIndex+j, '<meta name="viewport" content="width=device-width, initial-scale=1">\n')
+            j += 1
+            if baseUrl != None :
+                contents.insert(headIndex+j, canonical)
+                j += 1
+            contents.insert(headIndex+j, "<!-- End javadoc-cleanup block -->\n")
             modified = True
         if modified :
             f.seek(0)
