@@ -58,11 +58,11 @@ def tidy(filename, baseUrl=None) :
             j = 1
             contents.insert(headIndex+j, "<!-- GitHub action javadoc-cleanup -->\n")
             j += 1
-            contents.insert(headIndex+j, '<meta name="viewport" content="width=device-width, initial-scale=1">\n')
-            j += 1
             if baseUrl != None :
                 contents.insert(headIndex+j, canonical)
                 j += 1
+            contents.insert(headIndex+j, '<meta name="viewport" content="width=device-width, initial-scale=1">\n')
+            j += 1
             contents.insert(headIndex+j, "<!-- End javadoc-cleanup block -->\n")
             modified = True
         if modified :
