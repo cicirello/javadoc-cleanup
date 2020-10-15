@@ -246,12 +246,12 @@ The body of the javadocs....
             self.assertEqual(testfile.read(), TestTidyjavadocs.expectedJavadocCanon)
         os.remove("testcase.html")
 
-    def test_alreadycleanedup_canon(self) :
+    def test_alreadycleanedupnoncanon_canon(self) :
         with open("testcase.html", "w") as testfile :
             testfile.write(TestTidyjavadocs.javadocAlreadyCleanedUp)
         tidy.tidy("testcase.html", "https://TESTING.1.2.3/")
         with open("testcase.html", "r") as testfile :
-            self.assertEqual(testfile.read(), TestTidyjavadocs.expectedJavadocCanon)
+            self.assertEqual(testfile.read(), TestTidyjavadocs.expectedJavadoc)
         os.remove("testcase.html")
 
     def test_alreadycleanedupcanon_canon(self) :
