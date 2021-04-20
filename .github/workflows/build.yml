@@ -2,7 +2,7 @@ name: build
 
 on:
   push:
-    branches: [ master, development ]
+    branches: [ master ]
   pull_request:
     branches: [ master ]
 
@@ -24,4 +24,4 @@ jobs:
       run: python3 -u -m unittest tests/tests.py
 
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag javadoc-cleanup:$(date +%s)
+      run: docker build . --file Dockerfile
