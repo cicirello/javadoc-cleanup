@@ -1,8 +1,9 @@
 # javadoc-cleanup
 
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/cicirello/javadoc-cleanup?label=Marketplace&logo=GitHub)](https://github.com/marketplace/actions/javadoc-cleanup)
-[![build](https://github.com/cicirello/javadoc-cleanup/workflows/build/badge.svg)](https://github.com/cicirello/javadoc-cleanup/actions?query=workflow%3Abuild)
-[![GitHub](https://img.shields.io/github/license/cicirello/javadoc-cleanup)](https://github.com/cicirello/javadoc-cleanup/blob/master/LICENSE)
+[![build](https://github.com/cicirello/javadoc-cleanup/actions/workflows/build.yml/badge.svg)](https://github.com/cicirello/javadoc-cleanup/actions/workflows/build.yml)
+[![CodeQL](https://github.com/cicirello/javadoc-cleanup/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/cicirello/javadoc-cleanup/actions/workflows/codeql-analysis.yml)
+[![License](https://img.shields.io/github/license/cicirello/javadoc-cleanup)](https://github.com/cicirello/javadoc-cleanup/blob/master/LICENSE)
 ![GitHub top language](https://img.shields.io/github/languages/top/cicirello/javadoc-cleanup)
 
 The javadoc-cleanup GitHub action is a utility to tidy up javadocs prior to deployment to 
