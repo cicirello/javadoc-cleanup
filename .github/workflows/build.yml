@@ -25,3 +25,9 @@ jobs:
 
     - name: Build the Docker image
       run: docker build . --file Dockerfile
+
+    - name: Integration test
+      id: integration
+      uses: ./
+      with:
+        path-to-root: tests/testdata
