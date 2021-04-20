@@ -41,23 +41,39 @@ This output is the count of the number of html pages modified by the action.
 
 ## Examples
 
+### Prerequisites of Examples
+
+* The example workflows assume that `javadoc` is run via Maven, and it also
+  assumes that Maven's default directory structure is in use (e.g., that 
+  output is to a `target` directory). You should put Maven's `target` directory
+  in your `.gitignore`. The example workflows include a step that copies the
+  generated documentation from Maven's default of `target/site/apidocs` to 
+  the `docs` folder (assuming you are serving the documentation via GitHub Pages
+  in the `docs` folder).
+* Depending upon the version of Java, javadoc may generate multiple zip files
+  of its search index, in addition to the JavaScript versions of those very
+  search index files. This is true of javadoc for Java 11, although more recent Java
+  versions have eliminated the zip files. These zip files are completely unnecessary.
+  The documentation will use the `js` versions of these. Additionally, the
+  `zip` files are problematic for documentation sites served from a git repository
+  because they will appear as if they changed every time javadoc runs, even if
+  nothing has actually changed (e.g., due to time-stamping). We strongly recommend 
+  that for these reasons you add the five zip files to your `.gitignore`.  They are
+  `module-search-index.zip`, `package-search-index.zip`, `type-search-index.zip`, 
+  `member-search-index.zip`, and `tag-search-index.zip`. They are functionally 
+  unnecessary, as the `.js` counterparts alone are sufficient for javadoc's search to
+  work.
+
 ### Example 1: Basic example without canonical links
 
 This example workflow is triggered by a push of java source files.
 After setting up java, Maven is used to generate the javadocs, and 
 the javadocs are then copied from Maven default target location to the 
-docs directory where the GitHub Pages documentation site is assumed hosted. This 
-example assumes you have Maven's `target` directory in your `.gitignore`.
+docs directory where the GitHub Pages documentation site is assumed hosted. 
 After which, the javadoc-cleanup action runs. The workflow then outputs 
 the number of modified html pages (for logging purposes). The 
 workflow then commits the changes (if any).
-Before committing the changes, the workflow checks whether any html files differ
-from what is currently in the repository.  The reason for this check is that the
-example workflow is using Java 11's javadoc, which generates a few zip files containing
-a search index. Due to time-stamping, those zip files will always appear 
-different to git with each javadoc
-run. That check in this example workflow is a bit of a hack to avoid unnecessarily 
-repeatedly committing the javadoc site search index.  This example doesn't push the changes,
+This example doesn't push the changes,
 but you can easily add a `git push` after the commit, or add another action to handle
 that.
 
@@ -76,10 +92,11 @@ jobs:
     - name: Checkout the repo
       uses: actions/checkout@v2
 
-    - name: Set up JDK 1.11
-      uses: actions/setup-java@v1
+    - name: Set up the Java JDK
+      uses: actions/setup-java@v2
       with:
-        java-version: 1.11
+        java-version: '11'
+        distribution: 'adopt'
 
     - name: Build docs with Maven
       run: mvn javadoc:javadoc
@@ -101,11 +118,9 @@ jobs:
     
     - name: Commit documentation changes
       run: |
-        if [ $(git status | grep -c "**/*.html") == "0" ]; then
-          git checkout .
-        else
-          git config --global user.name 'Your Name'
-          git config --global user.email 'YOUR-USERNAME@users.noreply.github.com'
+        if [[ `git status --porcelain` ]]; then
+          git config --global user.name 'YOUR NAME HERE'
+          git config --global user.email 'YOUR-GITHUB-USERID@users.noreply.github.com'
           git add -A
           git commit -m "Automated API website updates."
         fi
@@ -131,10 +146,11 @@ jobs:
     - name: Checkout the repo
       uses: actions/checkout@v2
 
-    - name: Set up JDK 1.11
-      uses: actions/setup-java@v1
+    - name: Set up the Java JDK
+      uses: actions/setup-java@v2
       with:
-        java-version: 1.11
+        java-version: '11'
+        distribution: 'adopt'
 
     - name: Build docs with Maven
       run: mvn javadoc:javadoc
@@ -157,11 +173,9 @@ jobs:
     
     - name: Commit documentation changes
       run: |
-        if [ $(git status | grep -c "**/*.html") == "0" ]; then
-          git checkout .
-        else
-          git config --global user.name 'Your Name'
-          git config --global user.email 'YOUR-USERNAME@users.noreply.github.com'
+        if [[ `git status --porcelain` ]]; then
+          git config --global user.name 'YOUR NAME HERE'
+          git config --global user.email 'YOUR-GITHUB-USERID@users.noreply.github.com'
           git add -A
           git commit -m "Automated API website updates."
         fi
@@ -196,10 +210,11 @@ jobs:
       with:
         fetch-depth: 0 
 
-    - name: Set up JDK 1.11
-      uses: actions/setup-java@v1
+    - name: Set up the Java JDK
+      uses: actions/setup-java@v2
       with:
-        java-version: 1.11
+        java-version: '11'
+        distribution: 'adopt'
     
     - name: Build docs with Maven
       run: mvn javadoc:javadoc
@@ -222,24 +237,22 @@ jobs:
     
     - name: Commit documentation changes
       run: |
-        if [ $(git status | grep -c "**/*.html") == "0" ]; then
-          git checkout .
-        else
-          git config --global user.name 'Your Name'
-          git config --global user.email 'YOUR-USERNAME@users.noreply.github.com'
+        if [[ `git status --porcelain` ]]; then
+          git config --global user.name 'YOUR NAME HERE'
+          git config --global user.email 'YOUR-GITHUB-USERID@users.noreply.github.com'
           git add -A
           git commit -m "Automated API website updates."
         fi
 
     - name: Generate the sitemap
       id: sitemap
-      uses: cicirello/generate-sitemap@v1.6.1
+      uses: cicirello/generate-sitemap@v1.6.2
       with:
         base-url-path: https://URL.FOR.YOUR.WEBSITE.GOES.HERE/
         path-to-root: docs
         
     - name: Create Pull Request
-      uses: peter-evans/create-pull-request@v3.4.0
+      uses: peter-evans/create-pull-request@v3.8.2
       with:
         title: "Automated API website updates."
         commit-message: "Automated API documentation website updates."
