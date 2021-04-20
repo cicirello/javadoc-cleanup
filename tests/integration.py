@@ -58,6 +58,19 @@ The body of the javadocs....
 </html>
 """
 
+    expectedNonJavadoc = """<!DOCTYPE html>
+<html lang=en>
+<head>
+<meta charset=utf-8>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="title" content="Page title....">
+</head>
+<body>
+The body of the javadocs....
+</body>
+</html>
+"""
+
     def test_removetimestamp(self) :
         with open("tests/testdata/withTimestamp.html", "r") as testfile :
             self.assertEqual(testfile.read(), IntegrationTest.expectedJavadoc)
@@ -81,6 +94,15 @@ The body of the javadocs....
     def test_alreadycleanedup_in_subdir(self) :
         with open("tests/testdata/subdir/alreadyCleanedUp.html", "r") as testfile :
             self.assertEqual(testfile.read(), IntegrationTest.expectedJavadoc)
+
+    def test_nonJavadoc(self) :
+        with open("tests/testdata/nonJavadoc.html", "r") as testfile :
+            self.assertEqual(testfile.read(), IntegrationTest.expectedNonJavadoc)
+
+    def test_nonJavadoc_in_subdir(self) :
+        with open("tests/testdata/subdir/nonJavadoc.html", "r") as testfile :
+            self.assertEqual(testfile.read(), IntegrationTest.expectedNonJavadoc)
+
 
 
     
