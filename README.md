@@ -236,13 +236,13 @@ jobs:
 
     - name: Generate the sitemap
       id: sitemap
-      uses: cicirello/generate-sitemap@v1.6.1
+      uses: cicirello/generate-sitemap@v1.6.2
       with:
         base-url-path: https://URL.FOR.YOUR.WEBSITE.GOES.HERE/
         path-to-root: docs
         
     - name: Create Pull Request
-      uses: peter-evans/create-pull-request@v3.4.0
+      uses: peter-evans/create-pull-request@v3.8.2
       with:
         title: "Automated API website updates."
         commit-message: "Automated API documentation website updates."
