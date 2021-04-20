@@ -76,10 +76,11 @@ jobs:
     - name: Checkout the repo
       uses: actions/checkout@v2
 
-    - name: Set up JDK 1.11
-      uses: actions/setup-java@v1
+    - name: Set up the Java JDK
+      uses: actions/setup-java@v2
       with:
-        java-version: 1.11
+        java-version: '11'
+        distribution: 'adopt'
 
     - name: Build docs with Maven
       run: mvn javadoc:javadoc
@@ -131,10 +132,11 @@ jobs:
     - name: Checkout the repo
       uses: actions/checkout@v2
 
-    - name: Set up JDK 1.11
-      uses: actions/setup-java@v1
+    - name: Set up the Java JDK
+      uses: actions/setup-java@v2
       with:
-        java-version: 1.11
+        java-version: '11'
+        distribution: 'adopt'
 
     - name: Build docs with Maven
       run: mvn javadoc:javadoc
@@ -196,10 +198,11 @@ jobs:
       with:
         fetch-depth: 0 
 
-    - name: Set up JDK 1.11
-      uses: actions/setup-java@v1
+    - name: Set up the Java JDK
+      uses: actions/setup-java@v2
       with:
-        java-version: 1.11
+        java-version: '11'
+        distribution: 'adopt'
     
     - name: Build docs with Maven
       run: mvn javadoc:javadoc
