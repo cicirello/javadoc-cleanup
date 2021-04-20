@@ -32,5 +32,12 @@ jobs:
       with:
         path-to-root: tests/testdata
 
+    - name: Integration test
+      id: integration
+      uses: ./
+      with:
+        path-to-root: tests/testdata
+        base-url-path: https://TESTING.1.2.3/
+
     - name: Verify integration test results
       run: python3 -u -m unittest tests/integration.py
