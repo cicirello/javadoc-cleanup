@@ -36,7 +36,7 @@ jobs:
       id: integration
       uses: ./
       with:
-        path-to-root: tests/testdata
+        path-to-root: tests/testdatacanon
         base-url-path: https://TESTING.1.2.3/
 
     - name: Verify integration test results
