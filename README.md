@@ -102,11 +102,9 @@ jobs:
     
     - name: Commit documentation changes
       run: |
-        if [ $(git status | grep -c "**/*.html") == "0" ]; then
-          git checkout .
-        else
-          git config --global user.name 'Your Name'
-          git config --global user.email 'YOUR-USERNAME@users.noreply.github.com'
+        if [[ `git status --porcelain` ]]; then
+          git config --global user.name 'YOUR NAME HERE'
+          git config --global user.email 'YOUR-GITHUB-USERID@users.noreply.github.com'
           git add -A
           git commit -m "Automated API website updates."
         fi
@@ -159,11 +157,9 @@ jobs:
     
     - name: Commit documentation changes
       run: |
-        if [ $(git status | grep -c "**/*.html") == "0" ]; then
-          git checkout .
-        else
-          git config --global user.name 'Your Name'
-          git config --global user.email 'YOUR-USERNAME@users.noreply.github.com'
+        if [[ `git status --porcelain` ]]; then
+          git config --global user.name 'YOUR NAME HERE'
+          git config --global user.email 'YOUR-GITHUB-USERID@users.noreply.github.com'
           git add -A
           git commit -m "Automated API website updates."
         fi
@@ -225,11 +221,9 @@ jobs:
     
     - name: Commit documentation changes
       run: |
-        if [ $(git status | grep -c "**/*.html") == "0" ]; then
-          git checkout .
-        else
-          git config --global user.name 'Your Name'
-          git config --global user.email 'YOUR-USERNAME@users.noreply.github.com'
+        if [[ `git status --porcelain` ]]; then
+          git config --global user.name 'YOUR NAME HERE'
+          git config --global user.email 'YOUR-GITHUB-USERID@users.noreply.github.com'
           git add -A
           git commit -m "Automated API website updates."
         fi
