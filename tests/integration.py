@@ -134,35 +134,35 @@ The body of the javadocs....
 
     # Tests with canonical links
 
-    def test_removetimestamp(self) :
+    def test_removetimestamp_canon(self) :
         with open("tests/testdatacanon/withTimestamp.html", "r") as testfile :
             self.assertEqual(testfile.read(), IntegrationTest.expectedJavadocCanon.format("withTimestamp.html"))
 
-    def test_notimestamp(self) :
+    def test_notimestamp_canon(self) :
         with open("tests/testdatacanon/withoutTimestamp.html", "r") as testfile :
             self.assertEqual(testfile.read(), IntegrationTest.expectedJavadocCanon.format("withoutTimestamp.html"))
 
-    def test_alreadycleanedup(self) :
+    def test_alreadycleanedup_canon(self) :
         with open("tests/testdatacanon/alreadyCleanedUpCanon.html", "r") as testfile :
             self.assertEqual(testfile.read(), IntegrationTest.expectedJavadocCanon.format("alreadyCleanedUpCanon.html"))
 
-    def test_removetimestamp_in_subdir(self) :
+    def test_removetimestamp_in_subdir_canon(self) :
         with open("tests/testdatacanon/subdir/withTimestamp.html", "r") as testfile :
             self.assertEqual(testfile.read(), IntegrationTest.expectedJavadocCanon.format("subdir/withTimestamp.html"))
 
-    def test_notimestamp_in_subdir(self) :
+    def test_notimestamp_in_subdir_canon(self) :
         with open("tests/testdatacanon/subdir/withoutTimestamp.html", "r") as testfile :
             self.assertEqual(testfile.read(), IntegrationTest.expectedJavadocCanon.format("subdir/withoutTimestamp.html"))
 
-    def test_alreadycleanedup_in_subdir(self) :
+    def test_alreadycleanedup_in_subdir_canon(self) :
         with open("tests/testdatacanon/subdir/alreadyCleanedUpCanon.html", "r") as testfile :
             self.assertEqual(testfile.read(), IntegrationTest.expectedJavadocCanon.format("subdir/alreadyCleanedUpCanon.html"))
 
-    def test_nonJavadoc(self) :
+    def test_nonJavadoc_canon(self) :
         with open("tests/testdatacanon/nonJavadoc.html", "r") as testfile :
             self.assertEqual(testfile.read(), IntegrationTest.expectedNonJavadoc)
 
-    def test_nonJavadoc_in_subdir(self) :
+    def test_nonJavadoc_in_subdir_canon(self) :
         with open("tests/testdatacanon/subdir/nonJavadoc.html", "r") as testfile :
             self.assertEqual(testfile.read(), IntegrationTest.expectedNonJavadoc)
 
