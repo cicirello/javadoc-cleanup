@@ -271,7 +271,7 @@ jobs:
 
     - name: Generate the sitemap
       id: sitemap
-      uses: cicirello/generate-sitemap@v1.6.2
+      uses: cicirello/generate-sitemap@v1
       with:
         base-url-path: https://URL.FOR.YOUR.WEBSITE.GOES.HERE/
         path-to-root: docs
