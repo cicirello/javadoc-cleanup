@@ -4,14 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] - 2021-04-20
+## [Unreleased] - 2021-05-06
 
 ### Added
-* This changelog.
   
 ### Changed
-* Various improvements to documentation, specifically to the example
-  workflows.
 
 ### Deprecated
 
@@ -20,8 +17,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 ### CI/CD
+
+
+## [1.2.1] -2021-05-06
+
+### Changed
+* Various improvements to documentation, specifically to the example
+  workflows.
+
+### CI/CD
+* Introduced major version tag.
 * Enabled CodeQL code scanning on all push/pull-request events.
 * Added integration testing to all push/pull-request events.
+
+### Other
+* Added changelog.
 
 
 ## [1.2.0] - 2020-10-15
