@@ -1,0 +1,22 @@
+name: Move Major Release Tag
+
+on:
+  release:
+    types: [created]
+
+  workflow_dispatch:
+
+jobs:
+  movetag:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Get the release version
+      id: get_version
+      run: |
+        TESTING=refs/tags/v2.1234.1234
+        VERSION=${TESTING#refs/tags/}
+        MAJOR=${VERSION%%.*}
+        echo ::set-output name=major::${MAJOR}
