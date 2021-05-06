@@ -65,6 +65,30 @@ This output is the count of the number of html pages modified by the action.
   unnecessary, as the `.js` counterparts alone are sufficient for javadoc's search to
   work.
 
+### Basic Syntax
+
+You can run the action with a step in yuor workflow like this (assuming that your javadocs 
+are in docs directory:
+
+```yml
+    - name: Tidy up the javadocs
+      uses: cicirello/javadoc-cleanup@v1
+      with:
+        path-to-root: docs
+```
+
+In the above example, the major release version was used, which ensures that you'll
+be using the latest patch level release, including any bug fixes, etc. If you prefer,
+you can also use a specific version such as with:
+
+```yml
+    - name: Tidy up the javadocs
+      uses: cicirello/javadoc-cleanup@v1.2.1
+      with:
+        path-to-root: docs
+```
+
+
 ### Example 1: Basic example without canonical links
 
 This example workflow is triggered by a push of java source files.
@@ -109,7 +133,7 @@ jobs:
 
     - name: Tidy up the javadocs
       id: tidy
-      uses: cicirello/javadoc-cleanup@v1.2.0
+      uses: cicirello/javadoc-cleanup@v1
       with:
         path-to-root: docs
     
@@ -163,7 +187,7 @@ jobs:
 
     - name: Tidy up the javadocs
       id: tidy
-      uses: cicirello/javadoc-cleanup@v1.2.0
+      uses: cicirello/javadoc-cleanup@v1
       with:
         base-url-path: https://URL.FOR.YOUR.WEBSITE.GOES.HERE/
         path-to-root: docs
@@ -227,7 +251,7 @@ jobs:
     
     - name: Tidy up the javadocs
       id: tidy
-      uses: cicirello/javadoc-cleanup@v1.2.0
+      uses: cicirello/javadoc-cleanup@v1
       with:
         path-to-root: docs
         base-url-path: https://URL.FOR.YOUR.WEBSITE.GOES.HERE/
