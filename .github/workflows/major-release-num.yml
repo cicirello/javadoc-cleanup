@@ -20,3 +20,4 @@ jobs:
         VERSION=${TESTING#refs/tags/}
         MAJOR=${VERSION%%.*}
         echo ::set-output name=major::${MAJOR}
+        echo ${MAJOR}
