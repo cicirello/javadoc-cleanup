@@ -16,7 +16,7 @@ jobs:
     - name: Get the release version
       id: get_version
       run: |
-        TESTING=refs/tags/v2.1234.1234
+        TESTING="refs/tags/v2.1234.1234"
         VERSION=${TESTING#refs/tags/}
         MAJOR=${VERSION%%.*}
         echo ::set-output name=major::${MAJOR}
