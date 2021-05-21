@@ -22,7 +22,9 @@ The javadoc-cleanup GitHub action is designed to be used
 in combination with other GitHub Actions. For example, it 
 does not commit and push the modified javadocs. See 
 the [Example Workflows](#example-workflows) for examples of combining
-with other actions in your workflow.
+with other actions in your workflow. We also have links to a few projects
+that are actively using the javadoc-cleanup action in the 
+section [Examples in Other Projects](#examples-in-other-projects).
 
 ## Inputs
 
@@ -289,6 +291,11 @@ jobs:
 ```
 
 ## Examples in Other Projects
+
+If you would like to see examples where the action is actively used, here are a few repositories that 
+are actively using the `javadoc-cleanup` action. The table provides a link to repositories using the 
+action, and direct links to the relevant workflow as well as to the api documentation sites that result
+from the workflow.
 
 | Repository | Workflow | Javadocs |
 | :----- | :----- | :----- |
