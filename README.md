@@ -21,7 +21,7 @@ functions:
 The javadoc-cleanup GitHub action is designed to be used 
 in combination with other GitHub Actions. For example, it 
 does not commit and push the modified javadocs. See 
-the [Examples](#examples) for examples of combining
+the [Examples](#example-workflows) for examples of combining
 with other actions in your workflow.
 
 ## Inputs
@@ -45,7 +45,7 @@ just pass `docs` for this input.
 
 This output is the count of the number of html pages modified by the action.
 
-## Examples
+## Example Workflows
 
 ### Prerequisites of Examples
 
