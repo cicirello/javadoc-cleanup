@@ -1,7 +1,7 @@
 # javadoc-cleanup
 
 [<img alt="cicirello/javadoc-cleanup - Create mobile-friendly documentation sites by post-processing javadocs in GitHub Actions" 
-     src="images/javadoc-cleanup-optimized.svg" width="640" height="320">](#javadoc-cleanup)
+     src="images/javadoc-cleanup-optimized.svg" width="640">](#javadoc-cleanup)
 
 ## About
 
