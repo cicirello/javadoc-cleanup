@@ -288,6 +288,13 @@ jobs:
         commit-message: "Automated API documentation website updates."
 ```
 
+## Examples in Other Projects
+
+| Repository | Workflow | Javadocs |
+| :----- | :----- | :----- |
+| [Chips-n-Salsa](https://github.com/cicirello/Chips-n-Salsa) | [docs.yml](https://github.com/cicirello/Chips-n-Salsa/blob/master/.github/workflows/docs.yml) | https://chips-n-salsa.cicirello.org/api/ |
+| [JavaPermutationTools](https://github.com/cicirello/JavaPermutationTools) | [docs.yml](https://github.com/cicirello/JavaPermutationTools/blob/master/.github/workflows/docs.yml) | https://jpt.cicirello.org/api/ |
+
 ## License
 
 The scripts and documentation for this GitHub action are released under
