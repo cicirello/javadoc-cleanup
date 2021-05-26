@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased] - 2021-05-26
 
 ### Added
+  
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### CI/CD
+
+
+## [1.3.0] - 2021-05-26
+
+### Added
 * Ability to insert a user-defined block into the head of each javadoc page. The
   motivation of this was for the purpose of adding the ability to insert links to
   a favicon for the site. But exactly what is needed for this can vary greatly from
@@ -19,14 +34,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   latest major release tag) to ensure we don't accidentally pick up breaking 
   changes in future releases of base image.
 * Refactored existing code to improve maintainability.
-
-### Deprecated
-
-### Removed
-
-### Fixed
-
-### CI/CD
 
 
 ## [1.2.1] -2021-05-06
