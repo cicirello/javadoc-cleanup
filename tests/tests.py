@@ -309,7 +309,7 @@ The body of the javadocs....
     def test_removetimestamp_extrablock(self) :
         with open("testcase.html", "w") as testfile :
             testfile.write(TestTidyjavadocs.javadocWithTimestamp)
-        tidy.tidy("testcase.html", TestTidyjavadocs.block)
+        tidy.tidy("testcase.html", extraBlock=TestTidyjavadocs.block)
         with open("testcase.html", "r") as testfile :
             self.assertEqual(testfile.read(), TestTidyjavadocs.expectedJavadocWithBlock)
         os.remove("testcase.html")
@@ -317,7 +317,7 @@ The body of the javadocs....
     def test_notimestamp_extrablock(self) :
         with open("testcase.html", "w") as testfile :
             testfile.write(TestTidyjavadocs.javadocWithoutTimestamp)
-        tidy.tidy("testcase.html", TestTidyjavadocs.block)
+        tidy.tidy("testcase.html", extraBlock=TestTidyjavadocs.block)
         with open("testcase.html", "r") as testfile :
             self.assertEqual(testfile.read(), TestTidyjavadocs.expectedJavadocWithBlock)
         os.remove("testcase.html")
@@ -325,7 +325,7 @@ The body of the javadocs....
     def test_alreadycleanedup_extrablock(self) :
         with open("testcase.html", "w") as testfile :
             testfile.write(TestTidyjavadocs.javadocAlreadyCleanedUpWithBlock)
-        tidy.tidy("testcase.html", TestTidyjavadocs.block)
+        tidy.tidy("testcase.html", extraBlock=TestTidyjavadocs.block)
         with open("testcase.html", "r") as testfile :
             self.assertEqual(testfile.read(), TestTidyjavadocs.expectedJavadocWithBlock)
         os.remove("testcase.html")
@@ -333,7 +333,7 @@ The body of the javadocs....
     def test_nonJavadoc_extrablock(self) :
         with open("testcase.html", "w") as testfile :
             testfile.write(TestTidyjavadocs.nonJavadoc)
-        tidy.tidy("testcase.html", TestTidyjavadocs.block)
+        tidy.tidy("testcase.html", extraBlock=TestTidyjavadocs.block)
         with open("testcase.html", "r") as testfile :
             self.assertEqual(testfile.read(), TestTidyjavadocs.expectedNonJavadoc)
         os.remove("testcase.html")
@@ -341,7 +341,7 @@ The body of the javadocs....
     def test_removetimestamp_extrablock_nonewline(self) :
         with open("testcase.html", "w") as testfile :
             testfile.write(TestTidyjavadocs.javadocWithTimestamp)
-        tidy.tidy("testcase.html", TestTidyjavadocs.blockNoNewLine)
+        tidy.tidy("testcase.html", extraBlock=TestTidyjavadocs.blockNoNewLine)
         with open("testcase.html", "r") as testfile :
             self.assertEqual(testfile.read(), TestTidyjavadocs.expectedJavadocWithBlock)
         os.remove("testcase.html")
@@ -349,7 +349,7 @@ The body of the javadocs....
     def test_notimestamp_extrablock_nonewline(self) :
         with open("testcase.html", "w") as testfile :
             testfile.write(TestTidyjavadocs.javadocWithoutTimestamp)
-        tidy.tidy("testcase.html", TestTidyjavadocs.blockNoNewLine)
+        tidy.tidy("testcase.html", extraBlock=TestTidyjavadocs.blockNoNewLine)
         with open("testcase.html", "r") as testfile :
             self.assertEqual(testfile.read(), TestTidyjavadocs.expectedJavadocWithBlock)
         os.remove("testcase.html")
@@ -357,7 +357,7 @@ The body of the javadocs....
     def test_alreadycleanedup_extrablock_nonewline(self) :
         with open("testcase.html", "w") as testfile :
             testfile.write(TestTidyjavadocs.javadocAlreadyCleanedUpWithBlock)
-        tidy.tidy("testcase.html", TestTidyjavadocs.blockNoNewLine)
+        tidy.tidy("testcase.html", extraBlock=TestTidyjavadocs.blockNoNewLine)
         with open("testcase.html", "r") as testfile :
             self.assertEqual(testfile.read(), TestTidyjavadocs.expectedJavadocWithBlock)
         os.remove("testcase.html")
