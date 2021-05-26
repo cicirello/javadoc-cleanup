@@ -2,7 +2,7 @@
 #
 # javadoc-cleanup: Github action for tidying up javadocs
 # 
-# Copyright (c) 2020 Vincent A Cicirello
+# Copyright (c) 2020-2021 Vincent A Cicirello
 # https://www.cicirello.org/
 #
 # MIT License
@@ -30,14 +30,18 @@ import sys
 import os
 import os.path
 
-def tidy(filename, baseUrl=None) :
+def tidy(filename, baseUrl=None, extraBlock=None) :
     """The tidy function does the following:
     1) Removes any javadoc timestamps that were inserted by javadoc despite using the
     notimestamp option.
     2) Adds the meta viewport tag to improve browsing javadocs on mobile browsers.
+    3) Adds the canonical link (if that option was chosen).
 
     Keyword arguments:
     filename - The name of the file, including path.
+    baseUrl - The url of the documentation site
+    extraBlock - A string containing an additional block to insert into the head of
+        each page (e.g., can be used for links to favicons, etc).
     """
     modified = False
     generatedByJavadoc = False
@@ -63,6 +67,11 @@ def tidy(filename, baseUrl=None) :
                 j += 1
             contents.insert(headIndex+j, '<meta name="viewport" content="width=device-width, initial-scale=1">\n')
             j += 1
+            if extraBlock != None :
+                if extraBlock=="" or extraBlock[-1] != "\n" :
+                    extraBlock = extraBlock + "\n"
+                contents.insert(headIndex+j, extraBlock)
+                j += 1
             contents.insert(headIndex+j, "<!-- End javadoc-cleanup block -->\n")
             modified = True
         if modified :
@@ -73,6 +82,7 @@ def tidy(filename, baseUrl=None) :
 
 def urlstring(f, baseUrl) :
     """Forms a string with the full url from a filename and base url.
+    
     Keyword arguments:
     f - filename
     baseUrl - address of the root of the website
@@ -94,7 +104,10 @@ def urlstring(f, baseUrl) :
 if __name__ == "__main__" :
     websiteRoot = sys.argv[1]
     baseUrl = sys.argv[2].strip()
-    addCanonicalLinks = baseUrl.startswith("http")
+    extraBlock = sys.argv[3] if len(sys.argv[3]) > 0 else None
+    
+    if not baseUrl.startswith("http") :
+        baseUrl = None
 
     os.chdir(websiteRoot)
 
@@ -105,15 +118,10 @@ if __name__ == "__main__" :
                 allFiles.append(os.path.join(root, f))
 
     count = 0
-    if addCanonicalLinks :
-        for f in allFiles :
-            if tidy(f, baseUrl) :
-                count += 1
-    else :
-        for f in allFiles :
-            if tidy(f) :
-                count += 1
-
+    for f in allFiles :
+        if tidy(f, baseUrl, extraBlock) :
+            count += 1
+    
     print("::set-output name=modified-count::" + str(count))
     
     

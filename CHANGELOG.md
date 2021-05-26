@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] - 2021-05-06
+## [Unreleased] - 2021-05-26
 
 ### Added
   
@@ -17,6 +17,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 ### CI/CD
+
+
+## [1.3.0] - 2021-05-26
+
+### Added
+* Ability to insert a user-defined block into the head of each javadoc page. The
+  motivation of this was for the purpose of adding the ability to insert links to
+  a favicon for the site. But exactly what is needed for this can vary greatly from
+  one site to the next. This new feature is not limited to this use-case. It can be
+  used to insert anything that is valid in the head of an html page into every
+  javadoc generated page.
+  
+### Changed
+* Changed tag used to pull base docker image from `latest` to `3` (the current
+  latest major release tag) to ensure we don't accidentally pick up breaking 
+  changes in future releases of base image.
+* Refactored existing code to improve maintainability.
 
 
 ## [1.2.1] -2021-05-06
