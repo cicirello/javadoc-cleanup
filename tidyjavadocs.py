@@ -104,7 +104,10 @@ def urlstring(f, baseUrl) :
 if __name__ == "__main__" :
     websiteRoot = sys.argv[1]
     baseUrl = sys.argv[2].strip()
-    addCanonicalLinks = baseUrl.startswith("http")
+    extraBlock = sys.argv[3] if len(sys.argv[3]) > 0 else None
+    
+    if not baseUrl.startswith("http") :
+        baseUrl = None
 
     os.chdir(websiteRoot)
 
@@ -115,15 +118,10 @@ if __name__ == "__main__" :
                 allFiles.append(os.path.join(root, f))
 
     count = 0
-    if addCanonicalLinks :
-        for f in allFiles :
-            if tidy(f, baseUrl) :
-                count += 1
-    else :
-        for f in allFiles :
-            if tidy(f) :
-                count += 1
-
+    for f in allFiles :
+        if tidy(f, baseUrl, extraBlock) :
+            count += 1
+    
     print("::set-output name=modified-count::" + str(count))
     
     

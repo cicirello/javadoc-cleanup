@@ -1,6 +1,6 @@
 # javadoc-cleanup: Github action for tidying up javadocs
 # 
-# Copyright (c) 2020 Vincent A Cicirello
+# Copyright (c) 2020-2021 Vincent A Cicirello
 # https://www.cicirello.org/
 #
 # MIT License
@@ -32,10 +32,14 @@ branding:
 inputs:
   path-to-root:  
     description: 'The path to the root of the website'
-    required: true
+    required: false
     default: '.'
   base-url-path:
     description: 'The url of your webpage'
+    required: false
+    default: ''
+  user-defined-block:
+    description: 'This block will be inserted verbatim into the head of each javadoc page'
     required: false
     default: ''
 outputs:
@@ -47,3 +51,4 @@ runs:
   args:
     - ${{ inputs.path-to-root }}
     - ${{ inputs.base-url-path }}
+    - ${{ inputs.user-defined-block }}
