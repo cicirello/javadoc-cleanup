@@ -39,5 +39,14 @@ jobs:
         path-to-root: tests/testdatacanon
         base-url-path: https://TESTING.1.2.3/
 
+    - name: Integration test
+      id: integration3
+      uses: ./
+      with:
+        path-to-root: tests/testdatablock
+        user-defined-block: |
+          <link rel="icon" href="/images/favicon.svg" sizes="any" type="image/svg+xml">
+          <link rel="icon" href="/images/favicon.png" type="image/png">
+
     - name: Verify integration test results
       run: python3 -u -m unittest tests/integration.py
