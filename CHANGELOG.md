@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Changed tag used to pull base docker image from `latest` to `3` (the current
   latest major release tag) to ensure we don't accidentally pick up breaking 
   changes in future releases of base image.
+* Refactored existing code to improve maintainability.
 
 ### Deprecated
 
