@@ -136,7 +136,7 @@ you can also use a specific version such as with:
 
 ```yml
     - name: Tidy up the javadocs
-      uses: cicirello/javadoc-cleanup@v1.2.1
+      uses: cicirello/javadoc-cleanup@v1.3.0
       with:
         path-to-root: docs
 ```
