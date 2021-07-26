@@ -350,6 +350,21 @@ from the workflow.
 | [Chips-n-Salsa](https://github.com/cicirello/Chips-n-Salsa) | [docs.yml](https://github.com/cicirello/Chips-n-Salsa/blob/master/.github/workflows/docs.yml) | https://chips-n-salsa.cicirello.org/api/ |
 | [JavaPermutationTools](https://github.com/cicirello/JavaPermutationTools) | [docs.yml](https://github.com/cicirello/JavaPermutationTools/blob/master/.github/workflows/docs.yml) | https://jpt.cicirello.org/api/ |
 
+## Support the Project
+
+You can support the project in a number of ways:
+* __Starring__: If you find the `javadoc-cleanup` action 
+  useful, consider starring the repository.
+* __Sharing with Others__: Consider sharing it with others who
+  you feel might find it useful.
+* __Reporting Issues__: If you find a bug or have a suggestion for
+  a new feature, please report it via 
+  the [Issue tracker](https://github.com/cicirello/javadoc-cleanup/issues).
+* __Contributing Code__: If there is an open issue that you think
+  you can help with, submit a pull request.
+* __Sponsoring__: You can also consider 
+  [becoming a sponsor](https://github.com/sponsors/cicirello).
+
 ## License
 
 The scripts and documentation for this GitHub action are released under
