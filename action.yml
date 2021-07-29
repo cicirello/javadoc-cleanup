@@ -25,7 +25,7 @@
 # 
 
 name: 'javadoc-cleanup'
-description: 'Github action for tidying up javadocs'
+description: 'Create mobile-friendly javadocs in GitHub Actions'
 branding:
   icon: 'book-open'
   color: 'green'
