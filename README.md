@@ -31,6 +31,17 @@ with other actions in your workflow. We also have links to a few projects
 that are actively using the javadoc-cleanup action in the 
 section [Examples in Other Projects](#examples-in-other-projects).
 
+## Table of Contents
+
+The remainder of the documentation is organized into the following
+sections:
+* [Inputs](#inputs): Documentation of all of the actions's inputs.
+* [Outputs](#outputs): Documentation of all of the actions's outputs.
+* [Example Workflows](#example-workflows): Example workflows illustrating various features.
+* [Examples in Other Projects](#examples-in-other-projects)
+* [Support the Project](#support-the-project): Information on various ways that you can support
+  the project.
+
 ## Inputs
 
 ### `path-to-root`
