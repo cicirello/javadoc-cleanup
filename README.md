@@ -8,6 +8,7 @@ Check out all of our GitHub Actions: https://actions.cicirello.org/
 ## About
 
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/cicirello/javadoc-cleanup?label=Marketplace&logo=GitHub)](https://github.com/marketplace/actions/javadoc-cleanup)
+[![Count of Action Users](https://img.shields.io/endpoint?url=https%3A%2F%2Fwww.cicirello.org%2Fendpoints%2Fjavadoc-cleanup.json)](https://github.com/search?q=cicirello+javadoc-cleanup+path%3A.github%2Fworkflows+language%3AYAML&type=Code)
 [![build](https://github.com/cicirello/javadoc-cleanup/actions/workflows/build.yml/badge.svg)](https://github.com/cicirello/javadoc-cleanup/actions/workflows/build.yml)
 [![CodeQL](https://github.com/cicirello/javadoc-cleanup/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/cicirello/javadoc-cleanup/actions/workflows/codeql-analysis.yml)
 [![License](https://img.shields.io/github/license/cicirello/javadoc-cleanup)](https://github.com/cicirello/javadoc-cleanup/blob/master/LICENSE)
