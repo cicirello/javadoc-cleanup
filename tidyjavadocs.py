@@ -1,8 +1,8 @@
-#!/usr/bin/env python3
+#!/usr/bin/env -S python3 -B
 #
 # javadoc-cleanup: Github action for tidying up javadocs
 # 
-# Copyright (c) 2020-2021 Vincent A Cicirello
+# Copyright (c) 2020-2022 Vincent A Cicirello
 # https://www.cicirello.org/
 #
 # MIT License
