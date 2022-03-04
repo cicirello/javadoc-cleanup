@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] - 2021-05-26
+## [Unreleased] - 2022-03-04
 
 ### Added
   
@@ -17,6 +17,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 ### CI/CD
+
+
+## [1.3.1] - 2022-03-04
+  
+### Changed
+* Bumped python to 3.10.
+* Changed base docker image to cicirello/pyaction:4.2.0.
+* Now pulls base image from GitHub Container Registry under
+  assumption that from actions it should be faster from GitHub than
+  from Docker.
+
+### Fixed
+* Disabled pycache.
 
 
 ## [1.3.0] - 2021-05-26
