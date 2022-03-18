@@ -49,6 +49,8 @@ def tidy(filename, baseUrl, extraBlock, jd) :
     if baseUrl != None :
         canonical = '<link rel="canonical" href="{0}">\n'.format(urlstring(filename, baseUrl))
     with open(filename, 'r+') as f :
+        needsViewport = True
+        generatedByJavadoc = False
         contents = f.readlines()
         for i, line in enumerate(contents) :
             if line.strip() == "<head>" :
@@ -58,7 +60,11 @@ def tidy(filename, baseUrl, extraBlock, jd) :
                 if jd.hasTimestamp(line.strip()) :
                     contents[i] = jd.removeTimestamp(line.strip()) 
                     modified = True
-                    break
+            elif generatedByJavadoc and jd.isViewportDeclaration(line.strip()) :
+                needsViewport = False
+                break
+            elif line.strip().find("</head>") >= 0 :
+                break
         if generatedByJavadoc and contents[headIndex+1].strip() != "<!-- GitHub action javadoc-cleanup -->" :
             j = 1
             contents.insert(headIndex+j, "<!-- GitHub action javadoc-cleanup -->\n")
@@ -66,8 +72,9 @@ def tidy(filename, baseUrl, extraBlock, jd) :
             if baseUrl != None :
                 contents.insert(headIndex+j, canonical)
                 j += 1
-            contents.insert(headIndex+j, '<meta name="viewport" content="width=device-width, initial-scale=1">\n')
-            j += 1
+            if needsViewport :
+                contents.insert(headIndex+j, '<meta name="viewport" content="width=device-width, initial-scale=1">\n')
+                j += 1
             if extraBlock != None :
                 if extraBlock=="" or extraBlock[-1] != "\n" :
                     extraBlock = extraBlock + "\n"
@@ -108,12 +115,22 @@ class JavadocDetector :
 
     __slots__ = [ "_withVersion",
                   "_noVersion",
-                  "_javadocGeneratedComment"]
+                  "_javadocGeneratedComment",
+                  "_viewportCheck"]
 
     def __init__(self) :
         self._withVersion = re.compile("<!--\s+[Gg]enerated by javadoc\s+\(.+\)\s+-->", flags=re.A)
         self._noVersion = re.compile("<!--\s+[Gg]enerated by javadoc\s+-->", flags=re.A)
         self._javadocGeneratedComment = re.compile("<!--\s+[Gg]enerated by javadoc", flags=re.A)
+        self._viewportCheck = re.compile("<meta\s+.+viewport", flags=re.A)
+
+    def isViewportDeclaration(self, s) :
+        """Checks if a string is a meta viewport declaration.
+        
+        Keyword arguments:
+        s - the string to check
+        """
+        return self._viewportCheck.match(s) != None
 
     def isJavadocGenerated(self, s) :
         """Checks if a string is a javadoc generated marker.
