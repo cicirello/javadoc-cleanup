@@ -15,6 +15,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 
 ### Fixed
+
+### Dependencies
+
+### CI/CD
+
+
+## [1.3.3] - 2022-09-02
+
+### Fixed
 * Correctly handle cases of javadoc redirected pages, such as when javadoc generates a
   redirect from root of javadoc to a module page when Java Platform Module System is used.
   This includes not inserting a redundant canonical link, and also includes directing search
@@ -22,8 +31,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Dependencies
 * Bump cicirello/pyaction from 4.3.0 to 4.7.1
-
-### CI/CD
 
 
 ## [1.3.2] - 2022-03-18
