@@ -49,6 +49,7 @@ def tidy(filename, baseUrl, extraBlock, jd) :
     if baseUrl != None :
         canonical = '<link rel="canonical" href="{0}">\n'.format(urlstring(filename, baseUrl))
     with open(filename, 'r+') as f :
+        redirected = False
         needsViewport = True
         generatedByJavadoc = False
         contents = f.readlines()
@@ -62,14 +63,21 @@ def tidy(filename, baseUrl, extraBlock, jd) :
                     modified = True
             elif generatedByJavadoc and jd.isViewportDeclaration(line.strip()) :
                 needsViewport = False
-                break
+            elif generatedByJavadoc and jd.isRedirect(line.strip()) :
+                redirected = True
             elif line.strip().find("</head>") >= 0 :
                 break
         if generatedByJavadoc and contents[headIndex+1].strip() != "<!-- GitHub action javadoc-cleanup -->" :
             j = 1
             contents.insert(headIndex+j, "<!-- GitHub action javadoc-cleanup -->\n")
             j += 1
-            if baseUrl != None :
+            if redirected :
+                # For redirected pages, such as in case of Java Platform Module System modules,
+                # direct search engines to noindex, but to follow.
+                contents.insert(headIndex+j, '<meta name="robots" content="noindex, follow">')
+                j += 1
+            if baseUrl != None and not redirected:
+                # only insert canonical URL if page is not a redirect
                 contents.insert(headIndex+j, canonical)
                 j += 1
             if needsViewport :
@@ -116,13 +124,26 @@ class JavadocDetector :
     __slots__ = [ "_withVersion",
                   "_noVersion",
                   "_javadocGeneratedComment",
-                  "_viewportCheck"]
+                  "_viewportCheck",
+                  "_redirect_script",
+                  "_redirect_refresh"
+                ]
 
     def __init__(self) :
         self._withVersion = re.compile("<!--\s+[Gg]enerated by javadoc\s+\(.+\)\s+-->", flags=re.A)
         self._noVersion = re.compile("<!--\s+[Gg]enerated by javadoc\s+-->", flags=re.A)
         self._javadocGeneratedComment = re.compile("<!--\s+[Gg]enerated by javadoc", flags=re.A)
         self._viewportCheck = re.compile("<meta\s+.+viewport", flags=re.A)
+        self._redirect_refresh = re.compile("<meta\s+http-equiv=\"Refresh\"", flags=re.A)
+        self._redirect_script = re.compile("<script\s+.+window\.location\.replace", flags=re.A)
+
+    def isRedirect(self, s) :
+        """Checks if a string is a redirect.
+
+        Keyword arguments:
+        s - the string to check
+        """
+        return self._redirect_script.match(s) != None or self._redirect_refresh.match(s) != None
 
     def isViewportDeclaration(self, s) :
         """Checks if a string is a meta viewport declaration.
