@@ -27,8 +27,12 @@ functions:
 * It is also capable of generating and inserting the canonical URL for each page, of the 
   form `<link rel="canonical" href="https://URL.TO.YOUR.API.DOC.WEBSITE/page.html">`.
 * Enables inserting a user-defined block into the head of each javadoc generated 
-  page. For example, if you want to insert a link to your site's favicon, or really anything else that
-  is valid in the head of an html file.
+  page. For example, if you want to insert a link to your site's favicon, or a referrer policy, or really 
+  anything else that is valid in the head of an html file.
+* In projects that use the Java Platform Module System (JPMS), javadoc redirects the root `index.html` to
+  the page of a module, and under certain other circumstances to a package page. Such redirected pages
+  should direct search engines to `noindex`, but javadoc doesn't do so. The javadoc-cleanup action 
+  inserts a `noindex, follow` directive in any such redirected pages.
 
 The javadoc-cleanup GitHub action is designed to be used 
 in combination with other GitHub Actions. For example, it 
