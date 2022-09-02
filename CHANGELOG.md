@@ -21,6 +21,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### CI/CD
 
 
+## [1.3.4] - 2022-09-02
+
+### Fixed
+* Added missing new line character to improve readability of the generated javadoc-cleanup 
+  block. 
+
+
 ## [1.3.3] - 2022-09-02
 
 ### Fixed
