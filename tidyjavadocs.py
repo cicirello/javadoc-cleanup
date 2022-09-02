@@ -74,7 +74,7 @@ def tidy(filename, baseUrl, extraBlock, jd) :
             if redirected :
                 # For redirected pages, such as in case of Java Platform Module System modules,
                 # direct search engines to noindex, but to follow.
-                contents.insert(headIndex+j, '<meta name="robots" content="noindex, follow">')
+                contents.insert(headIndex+j, '<meta name="robots" content="noindex, follow">\n')
                 j += 1
             if baseUrl != None and not redirected:
                 # only insert canonical URL if page is not a redirect
