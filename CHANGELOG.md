@@ -18,7 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Correctly handle cases of javadoc redirected pages, such as when javadoc generates a
   redirect from root of javadoc to a module page when Java Platform Module System is used.
   This includes not inserting a redundant canonical link, and also includes directing search
-  engines to noindex and follow.
+  engines to noindex and follow such redirected pages.
 
 ### Dependencies
 * Bump cicirello/pyaction from 4.3.0 to 4.7.1
