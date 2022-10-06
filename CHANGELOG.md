@@ -17,7 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 ### Dependencies
-* Bump cicirello/pyaction from 4.7.1 to 4.9.0, including upgrading Python within the Docker container to 3.10.7
+* Bump cicirello/pyaction from 4.7.1 to 4.10.0, including upgrading Python within the Docker container to 3.10.7
 
 ### CI/CD
 
