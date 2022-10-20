@@ -15,12 +15,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 
 ### Fixed
+
+### Dependencies
+
+### CI/CD
+
+
+## [1.3.5] - 2022-10-20
+
+### Fixed
 * Replaced the usage of GitHub Action's deprecated `set-output` with the new `$GITHUB_OUTPUT` env file.
 
 ### Dependencies
 * Bump cicirello/pyaction from 4.7.1 to 4.11.0, including upgrading Python within the Docker container to 3.10.7
-
-### CI/CD
 
 
 ## [1.3.4] - 2022-09-02
