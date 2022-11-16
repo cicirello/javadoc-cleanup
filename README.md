@@ -50,6 +50,7 @@ sections:
 * [Outputs](#outputs): Documentation of all of the actions's outputs.
 * [Example Workflows](#example-workflows): Example workflows illustrating various features.
 * [Examples in Other Projects](#examples-in-other-projects)
+* [Blog Posts](#blog-posts): A selection of blog posts about the GitHub Action.
 * [Support the Project](#support-the-project): Information on various ways that you can support
   the project.
 
@@ -371,6 +372,11 @@ from the workflow.
 | :----- | :----- | :----- |
 | [Chips-n-Salsa](https://github.com/cicirello/Chips-n-Salsa) | [docs.yml](https://github.com/cicirello/Chips-n-Salsa/blob/master/.github/workflows/docs.yml) | https://chips-n-salsa.cicirello.org/api/ |
 | [JavaPermutationTools](https://github.com/cicirello/JavaPermutationTools) | [docs.yml](https://github.com/cicirello/JavaPermutationTools/blob/master/.github/workflows/docs.yml) | https://jpt.cicirello.org/api/ |
+
+## Blog Posts
+
+Here is a selection of blog posts about javadoc-cleanup on DEV.to:
+* [Post-Process Javadoc-Generated Documentation in GitHub Actions Before Deploying to the Web](https://dev.to/cicirello/post-process-javadoc-generated-documentation-in-github-actions-before-deploying-to-the-web-11k8), posted on DEV on November 16, 2022.
 
 ## Support the Project
 
