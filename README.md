@@ -376,6 +376,7 @@ from the workflow.
 ## Blog Posts
 
 Here is a selection of blog posts about javadoc-cleanup on DEV.to:
+* [Deploy a Documentation Website for a Java Library Using GitHub Actions](https://dev.to/cicirello/deploy-a-documentation-website-for-a-java-library-using-github-actions-197n), posted on DEV on November 30, 2022.
 * [Post-Process Javadoc-Generated Documentation in GitHub Actions Before Deploying to the Web](https://dev.to/cicirello/post-process-javadoc-generated-documentation-in-github-actions-before-deploying-to-the-web-11k8), posted on DEV on November 16, 2022.
 
 ## Support the Project
