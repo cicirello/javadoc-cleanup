@@ -50,6 +50,7 @@ sections:
 * [Outputs](#outputs): Documentation of all of the actions's outputs.
 * [Example Workflows](#example-workflows): Example workflows illustrating various features.
 * [Examples in Other Projects](#examples-in-other-projects)
+* [Built With](#built-with): A list of the tools, etc used to develop this action.
 * [Blog Posts](#blog-posts): A selection of blog posts about the GitHub Action.
 * [Support the Project](#support-the-project): Information on various ways that you can support
   the project.
@@ -373,6 +374,16 @@ from the workflow.
 | [Chips-n-Salsa](https://github.com/cicirello/Chips-n-Salsa) | [docs.yml](https://github.com/cicirello/Chips-n-Salsa/blob/master/.github/workflows/docs.yml) | https://chips-n-salsa.cicirello.org/api/ |
 | [JavaPermutationTools](https://github.com/cicirello/JavaPermutationTools) | [docs.yml](https://github.com/cicirello/JavaPermutationTools/blob/master/.github/workflows/docs.yml) | https://jpt.cicirello.org/api/ |
 
+## Built With
+
+The `javadoc-cleanup` action uses the following:
+* Python (implemented almost entirely in Python);
+* The [cicirello/pyaction](https://actions.cicirello.org/pyaction/) Docker container, which 
+  is designed to support GitHub Actions development in the Python language (see
+  [pyaction's GitHub repository](https://github.com/cicirello/pyaction)); and
+* We started with our template repository for GitHub Actions implemented in 
+  Python: [cicirello/python-github-action-template](https://github.com/cicirello/python-github-action-template).
+  
 ## Blog Posts
 
 Here is a selection of blog posts about javadoc-cleanup on DEV.to:
