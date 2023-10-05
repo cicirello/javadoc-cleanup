@@ -143,7 +143,7 @@ class JavadocDetector :
 
     def __init__(self) :
         self._withVersion = re.compile(
-            "<!--\\s+[Gg]enerated by javadoc\\s+\(.+\)\\s+-->", flags=re.A)
+            "<!--\\s+[Gg]enerated by javadoc\\s+\\(.+\\)\\s+-->", flags=re.A)
         self._noVersion = re.compile(
             "<!--\\s+[Gg]enerated by javadoc\\s+-->", flags=re.A)
         self._javadocGeneratedComment = re.compile(
@@ -153,7 +153,7 @@ class JavadocDetector :
         self._redirect_refresh = re.compile(
             "<meta\\s+http-equiv=\"Refresh\"", flags=re.A)
         self._redirect_script = re.compile(
-            "<script\\s+.+window\.location\.replace", flags=re.A)
+            "<script\\s+.+window\\.location\\.replace", flags=re.A)
 
     def isRedirect(self, s) :
         """Checks if a string is a redirect.
