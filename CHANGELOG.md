@@ -20,7 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Fix bug in regex used to detect if a Javadoc page already specified a viewport directive, such as in Java 16+.
 
 ### Dependencies
-* Bump cicirello/pyaction from 4.11.1 to 4.24.0, including upgrading Python within the Docker container to 3.11.
+* Bump cicirello/pyaction from 4.11.1 to 4.25.0, including upgrading Python within the Docker container to 3.12.
 
 ### CI/CD
 * Bump Python to 3.12 in CI/CD workflows when running unit tests.
