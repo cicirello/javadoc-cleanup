@@ -2,7 +2,7 @@
 #
 # javadoc-cleanup: Github action for tidying up javadocs
 # 
-# Copyright (c) 2020-2022 Vincent A Cicirello
+# Copyright (c) 2020-2023 Vincent A Cicirello
 # https://www.cicirello.org/
 #
 # MIT License
@@ -33,21 +33,24 @@ import re
 
 def tidy(filename, baseUrl, extraBlock, jd) :
     """The tidy function does the following:
-    1) Removes any javadoc timestamps that were inserted by javadoc despite using the
-    notimestamp option.
-    2) Adds the meta viewport tag to improve browsing javadocs on mobile browsers.
+    1) Removes any javadoc timestamps that were inserted by javadoc
+    despite using the notimestamp option.
+    2) Adds the meta viewport tag to improve browsing javadocs on
+    mobile browsers.
     3) Adds the canonical link (if that option was chosen).
 
     Keyword arguments:
     filename - The name of the file, including path.
     baseUrl - The url of the documentation site
-    extraBlock - A string containing an additional block to insert into the head of
-        each page (e.g., can be used for links to favicons, etc).
+    extraBlock - A string containing an additional block to insert
+        into the head of each page (e.g., can be used for links to
+        favicons, etc).
     """
     modified = False
     generatedByJavadoc = False
     if baseUrl != None :
-        canonical = '<link rel="canonical" href="{0}">\n'.format(urlstring(filename, baseUrl))
+        canonical = '<link rel="canonical" href="{0}">\n'.format(
+            urlstring(filename, baseUrl))
     with open(filename, 'r+') as f :
         redirected = False
         needsViewport = True
@@ -69,26 +72,35 @@ def tidy(filename, baseUrl, extraBlock, jd) :
                 break
         if generatedByJavadoc and contents[headIndex+1].strip() != "<!-- GitHub action javadoc-cleanup -->" :
             j = 1
-            contents.insert(headIndex+j, "<!-- GitHub action javadoc-cleanup -->\n")
+            contents.insert(
+                headIndex+j,
+                "<!-- GitHub action javadoc-cleanup -->\n")
             j += 1
             if redirected :
-                # For redirected pages, such as in case of Java Platform Module System modules,
-                # direct search engines to noindex, but to follow.
-                contents.insert(headIndex+j, '<meta name="robots" content="noindex, follow">\n')
+                # For redirected pages, such as in case of Java Platform
+                # Module System modules, direct search engines to noindex,
+                # but to follow.
+                contents.insert(
+                    headIndex+j,
+                    '<meta name="robots" content="noindex, follow">\n')
                 j += 1
             if baseUrl != None and not redirected:
                 # only insert canonical URL if page is not a redirect
                 contents.insert(headIndex+j, canonical)
                 j += 1
             if needsViewport :
-                contents.insert(headIndex+j, '<meta name="viewport" content="width=device-width, initial-scale=1">\n')
+                contents.insert(
+                    headIndex+j,
+                    '<meta name="viewport" content="width=device-width, initial-scale=1">\n')
                 j += 1
             if extraBlock != None :
                 if extraBlock=="" or extraBlock[-1] != "\n" :
                     extraBlock = extraBlock + "\n"
                 contents.insert(headIndex+j, extraBlock)
                 j += 1
-            contents.insert(headIndex+j, "<!-- End javadoc-cleanup block -->\n")
+            contents.insert(
+                headIndex+j,
+                "<!-- End javadoc-cleanup block -->\n")
             modified = True
         if modified :
             f.seek(0)
@@ -130,12 +142,18 @@ class JavadocDetector :
                 ]
 
     def __init__(self) :
-        self._withVersion = re.compile("<!--\s+[Gg]enerated by javadoc\s+\(.+\)\s+-->", flags=re.A)
-        self._noVersion = re.compile("<!--\s+[Gg]enerated by javadoc\s+-->", flags=re.A)
-        self._javadocGeneratedComment = re.compile("<!--\s+[Gg]enerated by javadoc", flags=re.A)
-        self._viewportCheck = re.compile("<meta\s+.+viewport", flags=re.A)
-        self._redirect_refresh = re.compile("<meta\s+http-equiv=\"Refresh\"", flags=re.A)
-        self._redirect_script = re.compile("<script\s+.+window\.location\.replace", flags=re.A)
+        self._withVersion = re.compile(
+            "<!--\\s+[Gg]enerated by javadoc\\s+\\(.+\\)\\s+-->", flags=re.A)
+        self._noVersion = re.compile(
+            "<!--\\s+[Gg]enerated by javadoc\\s+-->", flags=re.A)
+        self._javadocGeneratedComment = re.compile(
+            "<!--\\s+[Gg]enerated by javadoc", flags=re.A)
+        self._viewportCheck = re.compile(
+            "<meta\\s+.+viewport", flags=re.A)
+        self._redirect_refresh = re.compile(
+            "<meta\\s+http-equiv=\"Refresh\"", flags=re.A)
+        self._redirect_script = re.compile(
+            "<script\\s+.+window\\.location\\.replace", flags=re.A)
 
     def isRedirect(self, s) :
         """Checks if a string is a redirect.
@@ -162,7 +180,8 @@ class JavadocDetector :
         return self._javadocGeneratedComment.match(s) != None
 
     def hasTimestamp(self, s) :
-        """Checks if a string is a javadoc generated marker containing a timestamp.
+        """Checks if a string is a javadoc generated marker containing
+        a timestamp.
 
         Keyword arguments:
         s - The string to check
@@ -170,8 +189,8 @@ class JavadocDetector :
         return self.isJavadocGenerated(s) and self._noVersion.match(s) == None and self._withVersion.match(s) == None
 
     def removeTimestamp(self, s) :
-        """Assumes that the given string is the Javadoc generated comment, and removes
-        any timestamp that may be present.
+        """Assumes that the given string is the Javadoc generated comment,
+        and removes any timestamp that may be present.
 
         Keyword arguments:
         s - The string to remove a timestamp from, assumed to be a valid marker of beginning of javadoc generated code.
