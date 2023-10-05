@@ -162,7 +162,7 @@ you can also use a specific version such as with:
 
 ```yml
     - name: Tidy up the javadocs
-      uses: cicirello/javadoc-cleanup@v1.3.5
+      uses: cicirello/javadoc-cleanup@v1.3.7
       with:
         path-to-root: docs
 ```
@@ -194,12 +194,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout the repo
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
 
     - name: Set up the Java JDK
-      uses: actions/setup-java@v2
+      uses: actions/setup-java@v3
       with:
-        java-version: '11'
+        java-version: '17'
         distribution: 'adopt'
 
     - name: Build docs with Maven
@@ -248,12 +248,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout the repo
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
 
     - name: Set up the Java JDK
-      uses: actions/setup-java@v2
+      uses: actions/setup-java@v3
       with:
-        java-version: '11'
+        java-version: '17'
         distribution: 'adopt'
 
     - name: Build docs with Maven
@@ -310,14 +310,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout the repo
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
       with:
         fetch-depth: 0 
 
     - name: Set up the Java JDK
-      uses: actions/setup-java@v2
+      uses: actions/setup-java@v3
       with:
-        java-version: '11'
+        java-version: '17'
         distribution: 'adopt'
     
     - name: Build docs with Maven
