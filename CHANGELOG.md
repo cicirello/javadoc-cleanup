@@ -16,11 +16,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+### CI/CD
+
+### Dependencies
+
+
+## [1.3.9] - 2025-10-11
+
 ### Dependencies
 * Bunp Python to 3.14
-* Bump `cicirello/pyaction` to `3.13.7-gh-2.81.0`
+* Bump `cicirello/pyaction` to `3.14.0-gh-2.81.0`
 
-### CI/CD
 
 
 ## [1.3.8] - 2025-07-15
